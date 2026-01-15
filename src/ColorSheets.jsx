@@ -385,7 +385,7 @@ export default function SalesColorSheet() {
   };
 
   return (
-    <div className={`min-h-screen bg-[#0a0a0b] text-[#e5e5e5] p-6 ${resizing ? 'select-none' : ''}`} style={{ fontFamily: "'IBM Plex Sans', -apple-system, sans-serif" }}>
+    <div className={`min-h-screen bg-white text-[#333] p-6 ${resizing ? 'select-none' : ''}`} style={{ fontFamily: "'IBM Plex Sans', -apple-system, sans-serif" }}>
       <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
       
       {/* Header */}
@@ -399,16 +399,16 @@ export default function SalesColorSheet() {
               <rect x="14" y="14" width="7" height="7" rx="1" />
             </svg>
           </div>
-          <h1 className="text-2xl font-semibold tracking-tight">ColorSheets</h1>
+          <h1 className="text-2xl font-semibold tracking-tight text-[#222]">ColorSheets</h1>
         </div>
-        <p className="text-[#666] text-sm ml-11">Click column/row headers to select. Drag colors below to set sort priority.</p>
+        <p className="text-[#888] text-sm ml-11">Click column/row headers to select. Drag colors below to set sort priority.</p>
       </div>
 
       {/* Draggable Color Key with editing */}
-      <div className="mb-4 p-3 bg-[#141416] rounded-xl border border-[#2a2a2e]">
+      <div className="mb-4 p-3 bg-[#f8f8f8] rounded-xl border border-[#e5e5e5]">
         <div className="flex items-center gap-3 mb-2">
-          <span className="text-xs text-[#666] uppercase tracking-wider">Color Priority</span>
-          <span className="text-xs text-[#444]">← Drag to reorder • Click to edit</span>
+          <span className="text-xs text-[#888] uppercase tracking-wider">Color Priority</span>
+          <span className="text-xs text-[#aaa]">← Drag to reorder • Click to edit</span>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
           {colorOrder.map((color, index) => (
@@ -423,13 +423,13 @@ export default function SalesColorSheet() {
                 draggedColor === color.id 
                   ? 'opacity-50 border-orange-500 bg-orange-500/10' 
                   : editingColor === color.id
-                  ? 'border-orange-500 bg-[#1f1f23]'
-                  : 'border-[#333] bg-[#1a1a1c] hover:border-[#444]'
+                  ? 'border-orange-500 bg-white'
+                  : 'border-[#ddd] bg-white hover:border-[#bbb]'
               }`}
             >
-              <span className="text-xs text-[#555] font-mono w-4">{index + 1}</span>
+              <span className="text-xs text-[#999] font-mono w-4">{index + 1}</span>
               <div className="w-4 h-4 rounded" style={{ backgroundColor: color.hex }} />
-              <span className="text-xs text-[#888]">{color.label}</span>
+              <span className="text-xs text-[#555]">{color.label}</span>
               
               {/* Color Editor Popover */}
               {editingColor === color.id && (
@@ -491,7 +491,7 @@ export default function SalesColorSheet() {
           {/* Add Color Button */}
           <button
             onClick={addNewColor}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-dashed border-[#444] text-[#666] hover:border-[#666] hover:text-[#888] transition-all"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-dashed border-[#ccc] text-[#999] hover:border-[#999] hover:text-[#666] transition-all"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="12" y1="5" x2="12" y2="19" />
@@ -504,17 +504,17 @@ export default function SalesColorSheet() {
 
       {/* Sort Controls - show when columns selected */}
       {selectedColumns.size > 0 && (
-        <div className="mb-4 flex items-center gap-3 p-3 bg-gradient-to-r from-orange-500/10 to-pink-500/10 rounded-xl border border-orange-500/30">
-          <span className="text-sm text-orange-300">
+        <div className="mb-4 flex items-center gap-3 p-3 bg-gradient-to-r from-orange-50 to-pink-50 rounded-xl border border-orange-200">
+          <span className="text-sm text-orange-600">
             {selectedColumns.size === 1 
               ? `Column ${[...selectedColumns][0]} selected`
               : `Columns ${[...selectedColumns].join(', ')} selected`
             }
           </span>
-          <div className="h-4 w-px bg-orange-500/30" />
+          <div className="h-4 w-px bg-orange-200" />
           <button
             onClick={sortByColor}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm bg-orange-500/20 border border-orange-500/40 text-orange-300 hover:bg-orange-500/30 transition-all"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm bg-orange-100 border border-orange-300 text-orange-700 hover:bg-orange-200 transition-all"
           >
             <div className="flex gap-0.5">
               {colorOrder.slice(0, 4).map(c => (
@@ -525,19 +525,19 @@ export default function SalesColorSheet() {
           </button>
           <button
             onClick={() => sortByContent('asc')}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm bg-[#1a1a1c] border border-[#333] text-[#999] hover:border-[#444] transition-all"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm bg-white border border-[#ddd] text-[#555] hover:border-[#bbb] transition-all"
           >
             Sort A→Z
           </button>
           <button
             onClick={() => sortByContent('desc')}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm bg-[#1a1a1c] border border-[#333] text-[#999] hover:border-[#444] transition-all"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm bg-white border border-[#ddd] text-[#555] hover:border-[#bbb] transition-all"
           >
             Sort Z→A
           </button>
           <button
             onClick={() => { setSelectedColumns(new Set()); setSelectedCells(new Set()); setSelectedRows(new Set()); }}
-            className="ml-auto px-3 py-1.5 rounded-md text-sm text-[#666] hover:text-[#999] transition-all"
+            className="ml-auto px-3 py-1.5 rounded-md text-sm text-[#999] hover:text-[#666] transition-all"
           >
             Clear Selection
           </button>
@@ -545,8 +545,8 @@ export default function SalesColorSheet() {
       )}
 
       {selectedRows.size > 0 && (
-        <div className="mb-4 flex items-center gap-3 p-3 bg-gradient-to-r from-blue-500/10 to-teal-500/10 rounded-xl border border-blue-500/30">
-          <span className="text-sm text-blue-300">
+        <div className="mb-4 flex items-center gap-3 p-3 bg-gradient-to-r from-blue-50 to-teal-50 rounded-xl border border-blue-200">
+          <span className="text-sm text-blue-600">
             {selectedRows.size === 1 
               ? `Row ${[...selectedRows][0] + 1} selected`
               : `Rows ${[...selectedRows].map(i => i + 1).sort((a,b) => a-b).join(', ')} selected`
@@ -554,7 +554,7 @@ export default function SalesColorSheet() {
           </span>
           <button
             onClick={() => { setSelectedRows(new Set()); setSelectedCells(new Set()); setSelectedColumns(new Set()); }}
-            className="ml-auto px-3 py-1.5 rounded-md text-sm text-[#666] hover:text-[#999] transition-all"
+            className="ml-auto px-3 py-1.5 rounded-md text-sm text-[#999] hover:text-[#666] transition-all"
           >
             Clear Selection
           </button>
@@ -562,14 +562,14 @@ export default function SalesColorSheet() {
       )}
 
       {/* Table */}
-      <div className="border border-[#2a2a2e] rounded-xl overflow-hidden bg-[#111113] shadow-2xl">
+      <div className="border border-[#e0e0e0] rounded-xl overflow-hidden bg-white shadow-sm">
         <div className="overflow-auto max-h-[600px]">
           <table className="w-full border-collapse" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
             <thead className="sticky top-0 z-10">
-              <tr className="bg-[#18181b]">
+              <tr className="bg-[#f5f5f5]">
                 {/* Corner cell */}
-                <th className="w-12 min-w-[48px] p-0 border-r border-b border-[#2a2a2e] bg-[#18181b]">
-                  <div className="h-9 flex items-center justify-center text-[#444]">
+                <th className="w-12 min-w-[48px] p-0 border-r border-b border-[#e0e0e0] bg-[#f5f5f5]">
+                  <div className="h-9 flex items-center justify-center text-[#aaa]">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M4 4l16 16M4 4v6M4 4h6" />
                     </svg>
@@ -579,14 +579,14 @@ export default function SalesColorSheet() {
                 {Array.from({ length: NUM_COLS }, (_, i) => getColLetter(i)).map((col) => (
                   <th 
                     key={col} 
-                    className={`p-0 border-r border-b border-[#2a2a2e] relative transition-colors ${
-                      selectedColumns.has(col) ? 'bg-orange-500/20' : 'bg-[#18181b]'
+                    className={`p-0 border-r border-b border-[#e0e0e0] relative transition-colors ${
+                      selectedColumns.has(col) ? 'bg-orange-100' : 'bg-[#f5f5f5]'
                     }`}
                     style={{ width: colWidths[col], minWidth: colWidths[col] }}
                   >
                     <div 
-                      className={`h-9 flex items-center justify-center cursor-pointer hover:bg-[#252528] transition-colors ${
-                        selectedColumns.has(col) ? 'text-orange-300' : 'text-[#888]'
+                      className={`h-9 flex items-center justify-center cursor-pointer hover:bg-[#eee] transition-colors ${
+                        selectedColumns.has(col) ? 'text-orange-600' : 'text-[#666]'
                       }`}
                       onClick={(e) => handleColumnSelect(col, e)}
                     >
@@ -594,10 +594,10 @@ export default function SalesColorSheet() {
                     </div>
                     {/* Resize handle */}
                     <div
-                      className="absolute right-0 top-0 bottom-0 w-2 cursor-col-resize group hover:bg-orange-500/30 transition-colors flex items-center justify-center"
+                      className="absolute right-0 top-0 bottom-0 w-2 cursor-col-resize group hover:bg-orange-300/30 transition-colors flex items-center justify-center"
                       onMouseDown={(e) => startResize(e, col)}
                     >
-                      <div className="w-0.5 h-4 bg-[#444] group-hover:bg-orange-500 transition-colors rounded-full" />
+                      <div className="w-0.5 h-4 bg-[#ccc] group-hover:bg-orange-500 transition-colors rounded-full" />
                     </div>
                   </th>
                 ))}
@@ -608,13 +608,13 @@ export default function SalesColorSheet() {
                 <tr key={rowNum} className="group">
                   {/* Row number header - shows visual position, not data ID */}
                   <td 
-                    className={`p-0 border-r border-b border-[#2a2a2e] sticky left-0 transition-colors cursor-pointer ${
-                      selectedRows.has(visualIndex) ? 'bg-blue-500/20' : 'bg-[#141416]'
+                    className={`p-0 border-r border-b border-[#e0e0e0] sticky left-0 transition-colors cursor-pointer ${
+                      selectedRows.has(visualIndex) ? 'bg-blue-100' : 'bg-[#fafafa]'
                     }`}
                     onClick={(e) => handleRowSelect(visualIndex, e)}
                   >
-                    <div className={`h-8 flex items-center justify-center hover:bg-[#252528] transition-colors ${
-                      selectedRows.has(visualIndex) ? 'text-blue-300' : 'text-[#555]'
+                    <div className={`h-8 flex items-center justify-center hover:bg-[#eee] transition-colors ${
+                      selectedRows.has(visualIndex) ? 'text-blue-600' : 'text-[#999]'
                     }`}>
                       <span className="text-xs font-medium">{visualIndex + 1}</span>
                     </div>
@@ -629,7 +629,7 @@ export default function SalesColorSheet() {
                     return (
                       <td 
                         key={cellId} 
-                        className="p-0 border-r border-b border-[#1f1f23]"
+                        className="p-0 border-r border-b border-[#eee]"
                         style={{ width: colWidths[col], minWidth: colWidths[col] }}
                       >
                         <div 
@@ -637,7 +637,7 @@ export default function SalesColorSheet() {
                             isSelected ? 'ring-2 ring-inset ring-orange-500' : ''
                           }`}
                           style={{
-                            backgroundColor: bgColor ? `${bgColor}30` : 'transparent',
+                            backgroundColor: bgColor ? `${bgColor}25` : 'transparent',
                             borderLeft: bgColor ? `3px solid ${bgColor}` : '3px solid transparent',
                           }}
                           onClick={(e) => {
@@ -673,11 +673,11 @@ export default function SalesColorSheet() {
                               onKeyDown={(e) => handleKeyDown(e, cellId)}
                               onClick={(e) => e.stopPropagation()}
                               onMouseDown={(e) => e.stopPropagation()}
-                              className="w-full h-full bg-transparent outline-none text-sm text-[#e5e5e5]"
+                              className="w-full h-full bg-transparent outline-none text-sm text-[#333]"
                               autoFocus
                             />
                           ) : (
-                            <span className="text-sm text-[#ccc] truncate">{cellData[cellId] || ''}</span>
+                            <span className="text-sm text-[#333] truncate">{cellData[cellId] || ''}</span>
                           )}
                         </div>
                       </td>
@@ -743,12 +743,12 @@ export default function SalesColorSheet() {
       )}
 
       {/* Footer hint */}
-      <div className="mt-4 text-center text-xs text-[#444]">
+      <div className="mt-4 text-center text-xs text-[#999]">
         <span className="inline-flex items-center gap-4">
           <span>Click cell to edit</span>
-          <span className="w-1 h-1 rounded-full bg-[#333]" />
+          <span className="w-1 h-1 rounded-full bg-[#ccc]" />
           <span>Shift+click to multi-select</span>
-          <span className="w-1 h-1 rounded-full bg-[#333]" />
+          <span className="w-1 h-1 rounded-full bg-[#ccc]" />
           <span>Right-click to color</span>
         </span>
       </div>
